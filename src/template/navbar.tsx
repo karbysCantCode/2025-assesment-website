@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import { siteConfig } from "../../public/config";
+import { siteConfig } from "@/app/config";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,7 +32,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-full h-14 bg-black text-white flex fixed z-999">
+    <nav className="w-full h-14 bg-mantle text-white flex top-0 left-0 fixed z-999">
       <div className="container flex justify-between items-center min-w-full">
         <div className="flex items-center justify-between w-140 divide-x-3 divide-white">
           <img
@@ -44,7 +44,7 @@ export default function Navbar() {
 
 
         {/* desktop page nav */}
-        <ul className="hidden md:flex flex-row divide-x-2 w-full">
+        <ul className="hidden md:flex flex-row divide-x-2 divide-base w-full">
           {siteConfig.navbarElements.map((element) => (
             <li key={element.name}>
               <Button

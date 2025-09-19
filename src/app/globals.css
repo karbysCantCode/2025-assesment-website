@@ -10,6 +10,16 @@
 }
 
 @theme inline {
+  --color-navbar: #181926;
+  --color-primary: #363a4f;
+  --color-mantle: #1e2030;
+  --color-base: #24273a;
+  --color-overlay2: #939ab7;
+  --color-secondary: #494d64;
+  --color-tertiary: #5b6078;
+  --color-text: #cad3f5;
+  --color-subtext1: #b8c0e0;
+  --color-subtext0: #a5adcb;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
