@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import Image from "next/image";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -35,10 +36,11 @@ export default function Navbar() {
     <nav className="w-full h-14 bg-mantle text-white flex top-0 left-0 fixed z-999">
       <div className="container flex justify-between items-center min-w-full">
         <div className="flex items-center justify-between w-140 divide-x-3 divide-white">
-          <img
-          src="/Maunga_Club_white.png"
+          <Image
+          src={"/Maunga_Club_white.png"}
           alt="Maunga Club Logo"
-          className="h-14 w-auto"
+          fill
+          className="!relative !h-14 !w-auto"
           />
 
 

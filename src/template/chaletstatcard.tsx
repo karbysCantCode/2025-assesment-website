@@ -1,10 +1,10 @@
 import React from "react"; 
+import Image from "next/image";
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning'; {/*child icon*/ }
 import PersonIcon from '@mui/icons-material/Person'; {/*adult icon*/ }
 
 
 import { chaletData, ChaletName } from "@/app/config";
-import { Elevator } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
 type ChaletStatCardProps = {
@@ -28,13 +28,19 @@ export default function ChaletStatCard({ chaletName }: ChaletStatCardProps) {
                   </ul>
                   {/* wide screen stats and book buttons */}
                   <div className="md:flex hidden flex-row content-center justify-around pt-5 pb-5">
-                    <div className="w-24 flex flex-row content-center bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
+                    <div className="w-24 flex flex-row relative content-center group bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
                         <a className="pr-2" >{chalet.adults}</a>
                         <PersonIcon />
+                        <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                          Number of adults
+                        </span>
                     </div>
-                    <div className="w-24 flex flex-row content-center bg-white justify-between p-5 shadow-md rounded-full hover:bg-slate-200">
+                    <div className="w-24 flex flex-row content-center bg-white group relative justify-between p-5 shadow-md rounded-full hover:bg-slate-200">
                         <a className="pr-2" >{chalet.children}</a>
                         <EscalatorWarningIcon />
+                        <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                          Number of children
+                        </span>
                     </div>
                   </div>
                   <Button variant="contained" className="md:!block !hidden !h-10 !m-auto !mt-5">
@@ -42,19 +48,25 @@ export default function ChaletStatCard({ chaletName }: ChaletStatCardProps) {
                   </Button>
                 </section>
                 
-                <img src={chalet.image} alt={chalet.name} className="rounded-md md:m-0 mt-5 h-auto max-w-100"/>
+                <Image src={chalet.image} fill alt={chalet.name} className="!rounded-md md:!m-0 !mt-5 !h-auto !max-w-100 !relative"/>
             </article>
 
             {/* slim screen stats and book buttons */}
             <div className="md:hidden flex md:flex-row flex-col content-center justify-start pt-5">
               <div className="flex flex-row content-center md:justify-start justify-start">
-                <div className="w-24 flex flex-row content-center bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
+                <div className="w-24 flex flex-row content-center relative group bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
                     <a className="pr-2" >{chalet.adults}</a>
                     <PersonIcon />
+                    <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                      Number of adults
+                    </span>
                 </div>
-                <div className="w-24 flex flex-row content-center bg-white justify-between p-5 shadow-md rounded-full hover:bg-slate-200">
+                <div className="w-24 flex flex-row content-center relative group bg-white justify-between p-5 shadow-md rounded-full hover:bg-slate-200">
                     <a className="pr-2" >{chalet.children}</a>
                     <EscalatorWarningIcon />
+                    <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                      Number of children
+                    </span>
                 </div>
               </div>
 

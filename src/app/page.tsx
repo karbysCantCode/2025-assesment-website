@@ -1,9 +1,10 @@
 "use client";
 import * as React from "react";
+import Image from "next/image";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
 import ChaletStatCard from "@/template/chaletstatcard";
-import { ChaletName, chaletData, siteConfig } from "@/app/config";
+import { ChaletName, chaletData } from "@/app/config";
 
 export default function Home() {
 
@@ -24,7 +25,7 @@ export default function Home() {
   return (
     <div className="bg-gray-200 h-">
       <Navbar />
-      <img src="/mountain_view_1.jpg" className="md:h-100 h-50 w-full object-cover object-center fixed top-14 z-10" style={{filter:`blur(${blur}px)`}}/>
+      <Image src={"/mountain_view_1.jpg"} fill alt="View of Maunga Club mountains" className="md:!h-100 !h-50 !w-full !object-cover !object-center !fixed !top-14 !z-10" style={{filter:`blur(${blur}px)`}}/>
       <main className="relative md:top-114 top-64 z-50">
         <section className="relative bg-white w-full h-auto">
           <h1 className="text-center pt-5 text-[1.5rem] text-black block">
@@ -35,7 +36,7 @@ export default function Home() {
           </h1>
         </section>
         <section>
-          <img src="/mountain_view_dark.jpg" className="md:h-200 h-200 w-full object-cover object-center"></img>
+          <Image fill src={"/mountain_view_dark.jpg"} alt="View of forest at Maunga Club" className="!relative !h-200 !w-full !object-cover !object-center"/>
           <aside className="flex flex-col divide-y-2 divide-stone-200 absolute top-40 md:left-10 left-5 mr-5 md:w-100 h-auto w-[90%] bg-white p-5 rounded-md shadow-md max-w-md">
             <h2 className="text-2xl font-bold pb-5 mb-5">About Maunga Club</h2>
             <p className="md:text-[1rem] text-[0.95rem] text-gray-700 pb-5 mb-5">

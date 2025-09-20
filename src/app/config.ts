@@ -1,4 +1,5 @@
-{/*this whole file for future proofing or whatever TODO REMOVE*/}
+{/*this whole file for future proofing or whatever TODO REMOVE
+  also using next/image for optimisation or somthing instead of img*/}
 
 export const siteConfig = {
     siteName: "Maunga Club",
