@@ -3,7 +3,7 @@ import * as React from "react";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
 import ChaletStatCard from "@/template/chaletstatcard";
-import { siteConfig } from "@/app/config";
+import { ChaletName, chaletData, siteConfig } from "@/app/config";
 
 export default function Home() {
 
@@ -22,7 +22,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 h-">
       <Navbar />
       <img src="/mountain_view_1.jpg" className="md:h-100 h-50 w-full object-cover object-center fixed top-14 z-10" style={{filter:`blur(${blur}px)`}}/>
       <main className="relative md:top-114 top-64 z-50">
@@ -53,7 +53,12 @@ export default function Home() {
       
           
         </section>
-        <ChaletStatCard chaletName="kakapo" />
+        <article className="flex md:flex-col flex-col">
+          {(Object.keys(chaletData) as ChaletName[]).map((chaletName) => (
+            <ChaletStatCard key={chaletData[chaletName].name} chaletName={chaletName} />
+          ))}
+        </article>
+        
         <Footer />
       </main>
     </div>

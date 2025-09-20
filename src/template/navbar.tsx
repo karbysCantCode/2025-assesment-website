@@ -49,7 +49,7 @@ export default function Navbar() {
             <li key={element.name}>
               <Button
                 variant="text"
-                href={element.link}
+                href={element.href}
                 sx={{
                   fontSize: "1.1rem",
                   fontFamily: ["Noto Sans", "sans-serif"],
@@ -120,7 +120,7 @@ export default function Navbar() {
           <MenuItem
             key={element.name}
             component="a"
-            href={element.link}
+            href={element.href}
             onClick={handleClose}
           >
             {element.name}
