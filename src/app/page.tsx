@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
 import ChaletStatCard from "@/template/chaletstatcard";
+import ChaletShowcaseCard from "@/template/chaletshowcasecard";
 import { ChaletName, chaletData } from "@/app/config";
 
 export default function Home() {
@@ -56,7 +57,7 @@ export default function Home() {
         </section>
         <article className="flex md:flex-col flex-col">
           {(Object.keys(chaletData) as ChaletName[]).map((chaletName) => (
-            <ChaletStatCard key={chaletData[chaletName].name} chaletName={chaletName} />
+            <ChaletShowcaseCard key={chaletData[chaletName].name} chaletName={chaletName} />
           ))}
         </article>
         

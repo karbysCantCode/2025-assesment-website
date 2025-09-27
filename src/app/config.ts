@@ -20,7 +20,9 @@ export const chaletData = {
             "Largest of the chalets.",
             "Large kitchen, dining and living area.",
             "Great amenities"
-        ]
+        ],
+        showcase_image_1: "/kakapo/cabin_view.jpg",
+        showcase_image_2: "/kakapo/hallway.jpg"
       },
 
     "pukeko": {   
@@ -31,7 +33,9 @@ export const chaletData = {
         features: [
             "Great for large groups/families wanting a chalet to themselves.",
             "Limits on adult/child number ensure comfortable stays."
-        ]
+        ],
+        showcase_image_1: "/pukeko/adult_bedroom.jpg",
+        showcase_image_2: "/pukeko/chalet_view.jpg"
       },
     "kereru": {   
         name: "Kererū", 
@@ -43,7 +47,9 @@ export const chaletData = {
             "2 bedrooms.",
             "Perfect for families with 2-4 children.",
             "Separate living area"
-        ]
+        ],
+        showcase_image_1: "/kereru/kitchen.jpg",
+        showcase_image_2: "/kereru/adult_bedroom.jpg"
       }
 }
 export type ChaletName = keyof typeof chaletData;
