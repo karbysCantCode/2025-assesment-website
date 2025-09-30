@@ -3,12 +3,50 @@ import * as React from "react";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
 import ChaletStatCard from "@/template/chaletstatcard";
-import { ChaletName, chaletData, siteConfig } from "@/app/config";
+import { ChaletName, chaletData, siteConfig, clubBenefits } from "@/app/config";
+import Image from "next/image";
+import ScrollButton from "@/template/scrollButton";
 
 export default function Bookings() {
   return (
-    <main>
+    <main className="md:bg-white bg-slate-200">
       <Navbar/>
+      <div className="pb-14"/>
+      <div className="md:justify-normal justify-around relative items-stretch">
+        <Image src={"/maunga_club_cabin.jpg"} fill alt="Maunga Club Cabin" className=" !w-full !static md:!object-cover md:block hidden" ></Image>
+      
+        <div className="flex flex-col divide-y-2 divide-slate-200 container md:mx-5 mx-5 md:mb-0 mb-10 text-center bg-white rounded-md shadow-2xl md:absolute relative md:top-23 mt-10 md:ml-10 md:w-100 w-auto md:m-0 h-auto z-10">
+          <h2 className="text-3xl py-4 px-2 font-semibold">
+            Benefits of joining<br/> the club:
+          </h2>
+          <ul className="text-left p-5 list-disc pl-10">
+            {clubBenefits.map((benefit, idx) => (
+              <li key={idx} className="text-slate-700">{benefit}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="flex flex-col divide-y-2 divide-slate-200 text-center bg-white shadow-2xl relative md:w-[90%] w-full mx-auto z-10">
+        <h2 className="text-3xl py-4 px-2 font-semibold">
+          How to join the club
+        </h2>
+        <p className="py-5">
+          Email maungaclub@maungaclub.maungaclub the following information:
+        </p>
+        <ul className="text-left p-5 list-disc pl-10">
+          <li> Full Name. </li>
+          <li> Physical Address. </li>
+          <li> Proof of Address (eg copy of power bill). </li>
+          <li> Proof of ID (driver's license or passport). </li>
+        </ul>
+        <p className="py-5 text-left px-5">
+          Membership will be confirmed by email. <br></br>
+          Additional information about the Club and accommodation (membership letter) will be sent
+          by regular mail.
+        </p>
+      </div>
+      <ScrollButton/>
       <Footer/>
     </main>
   )

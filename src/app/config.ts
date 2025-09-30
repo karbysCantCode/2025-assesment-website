@@ -10,6 +10,16 @@ export const siteConfig = {
     ],
 }
 
+export const clubBenefits = [
+  "Exclusive access - Only members can stay at the chalets.",
+  "Weekend getaways - Bookings are available Friday to Sunday, perfect for short ski trips.",
+  "Flexible group sizes - Chalets can accommodate between 6 and 40 people, ideal for families, friends, or larger groups.",
+  "Ski-in, ski-out convenience - All chalets are located directly on the mountain.",
+  "Expansive terrain - Access to 550 hectares of ski and snowboard area.",
+  "Extended season - Enjoy the longest ski/snowboard season in New Zealand.",
+  "Variety of chalets - Members can choose from three chalets, each with different capacities for adults and children.",
+]
+
 export const chaletData = {
     "kakapo": {   
         name: "Kākāpo", 

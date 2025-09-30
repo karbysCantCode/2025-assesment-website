@@ -24,7 +24,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <div className="bg-gray-200 h-">
+    <div className="bg-transparent">
       <Navbar />
       <Image src={"/mountain_view_1.jpg"} fill alt="View of Maunga Club mountains" className="md:!h-100 !h-50 !w-full !object-cover !object-center !fixed !top-14 !z-10" style={{filter:`blur(${blur}px)`}}/>
       <main className="relative md:top-114 top-64 z-50">
@@ -55,12 +55,11 @@ export default function Home() {
       
           
         </section>
-        <article className="flex md:flex-col flex-col">
+        <article className="flex md:flex-row flex-wrap flex-col justify-around">
           {(Object.keys(chaletData) as ChaletName[]).map((chaletName) => (
             <ChaletShowcaseCard key={chaletData[chaletName].name} chaletName={chaletName} />
           ))}
         </article>
-        
         <Footer />
       </main>
     </div>

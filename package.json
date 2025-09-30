@@ -16,7 +16,11 @@
     "js-cookie": "^3.0.5",
     "next": "^15.5.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-router-dom": "^7.9.3",
+    "embla-carousel-react": "8.6.0",
+		"embla-carousel": "8.6.0",
+		"embla-carousel-autoplay": "8.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
