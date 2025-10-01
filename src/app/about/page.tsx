@@ -12,6 +12,14 @@ export default function Bookings() {
     <main className="md:bg-white bg-slate-200">
       <Navbar/>
       <div className="pb-14"/>
+      <div className="flex flex-col content-center bg-white text-center w-full relative py-10 shadow-xl">
+        <h2 className="text-xl">
+          Join our club,
+        </h2>
+        <h1 className="text-4xl font-bold">
+          <i>TODAY</i>
+        </h1>
+      </div>
       <div className="md:justify-normal justify-around relative items-stretch">
         <Image src={"/maunga_club_cabin.jpg"} fill alt="Maunga Club Cabin" className=" !w-full !static md:!object-cover md:block hidden" ></Image>
       

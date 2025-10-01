@@ -19,12 +19,12 @@ export default function ChaletShowcaseCard({ chaletName }: ChaletStatCardProps) 
       <section className="flex md:flex-row flex-col justify-center ">
         <h1 className="text-[2rem] p-5 md:ml-10 md:mr-10 mr-auto ml-auto">{chalet.name}</h1>
         {/*wide screen button*/}
-        <Button variant="contained" className="!hidden md:!block !h-10 !ml-90 !mt-auto !mb-auto !mt-5 !max-w-10000000 !max-w-30" onClick={handleClick}>
-          Book Now!
+        <Button variant="contained" className="!hidden md:!block !h-10 !ml-90 !mt-auto !mb-auto !mt-5 !max-w-10000000 !max-w-30 !bg-cyan-200 !text-black" onClick={handleClick}>
+          Find out more
         </Button>
       </section>
-      <Button variant="contained" className="!block md:!hidden !h-10 !mt-10 !ml-auto !mr-auto !max-w-10000000 !max-w-30" onClick={handleClick}>
-        Book Now!
+      <Button variant="contained" className="!block md:!hidden !h-10 !mt-10 !ml-auto !mr-auto !max-w-10000000 !max-w-30 !bg-cyan-200 !text-black" onClick={handleClick}>
+        Find out more
       </Button>
       
       <section className="justify-between relative flex md:flex-row flex-col">

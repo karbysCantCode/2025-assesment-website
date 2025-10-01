@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-mantle text-white py-4">
+    <footer className="bg-mantle text-white py-4 z-5">
       <div className="container mx-auto text-center">
         <p className="text-sm mb-5">
           Contact Us: maungaclub@maungaclub.maungaclub

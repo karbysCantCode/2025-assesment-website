@@ -3,7 +3,6 @@ import * as React from "react";
 import Image from "next/image";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
-import ChaletStatCard from "@/template/chaletstatcard";
 import ChaletShowcaseCard from "@/template/chaletshowcasecard";
 import { ChaletName, chaletData } from "@/app/config";
 

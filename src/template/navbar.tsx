@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Cookies from "js-cookie";
 
 import { siteConfig } from "@/app/config";
 
@@ -16,20 +17,31 @@ export default function Navbar() {
   const open = Boolean(anchorEl);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [username, setUsername] = React.useState<String | null>(null);
 
+  React.useEffect(() => {
+    setIsLoggedIn(Cookies.get("logged_in") === "true");
+    if (isLoggedIn) {
+      const usernameCookie = Cookies.get("username");
+      if (usernameCookie) {
+        setUsername(usernameCookie);
+      }
+    }
+  })
+  
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleLogout = () => {
-
     setIsLoggedIn(false);
-  }
-
-  const handleLogin = () => {
-    
+    const loggedInCookie = Cookies.get("logged_in");
+    if (loggedInCookie) {
+      Cookies.set("logged_in", "false")
+    }
   }
 
   return (
@@ -73,14 +85,26 @@ export default function Navbar() {
         </div>
 
         <div className="md:flex hidden items-center pe-7">
-          <IconButton
-            color="inherit"
-            aria-label="login"
-            onClick={handleLogin}
-            sx={{ ":hover": { bgcolor: "gray" }}}
-          >
-            <PersonAddIcon />
-          </IconButton>
+          {isLoggedIn ? (
+            <p>
+              Greetings, {username}!
+            </p>
+          ) : 
+          (<p></p>)
+          }
+          <div className="relative group">
+            <IconButton
+              color="inherit"
+              aria-label="register"
+              href="/register"
+              sx={{ ":hover": { bgcolor: "gray" }}}
+            >
+              <PersonAddIcon />
+            </IconButton>
+            <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+              Register now!
+            </span>
+          </div>
         </div>
 
         <div className="mr-4 md:hidden flex justify-between">
@@ -96,8 +120,8 @@ export default function Navbar() {
           ) : (
             <IconButton
             color="inherit"
-            aria-label="login"
-            href="/login"
+            aria-label="register"
+            href="/register"
             sx={{ ":hover": { bgcolor: "gray" }}}
           >
             <PersonAddIcon />
