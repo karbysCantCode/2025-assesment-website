@@ -9,6 +9,9 @@ export default function Bookings() {
   return (
     <main>
       <Navbar/>
+
+      
+
       <Footer/>
     </main>
   )
