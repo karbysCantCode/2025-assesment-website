@@ -10,8 +10,9 @@ import { Button } from "@mui/material";
 type ChaletStatCardProps = {
   chaletName: ChaletName;
   inverted: Boolean;
+  handleClick: (chaletName: ChaletName) => void;
 };
-export default function ChaletStatCard({ chaletName, inverted }: ChaletStatCardProps) {
+export default function ChaletStatCard({ chaletName, inverted, handleClick }: ChaletStatCardProps) {
     const chalet = chaletData[chaletName];
     if (!chalet) return null;
     if (inverted) return (
@@ -45,7 +46,7 @@ export default function ChaletStatCard({ chaletName, inverted }: ChaletStatCardP
                         </span>
                     </div>
                   </div>
-                  <Button variant="contained" className="md:!block !hidden !h-10 !m-auto !mt-5 !bg-cyan-200 !text-black">
+                  <Button variant="contained" className="md:!block !hidden !h-10 !m-auto !mt-5 !bg-cyan-200 !text-black" onClick={() => handleClick(chaletName)}>
                     Arrange Booking
                   </Button>
                 </section>
@@ -71,7 +72,7 @@ export default function ChaletStatCard({ chaletName, inverted }: ChaletStatCardP
                 </div>
               </div>
 
-              <Button variant="contained" className="!h-10 md:!ml-12 md:!mt-auto md:!mb-auto !mt-5 !bg-cyan-200 !text-black">
+              <Button variant="contained" className="!h-10 md:!ml-12 md:!mt-auto md:!mb-auto !mt-5 !bg-cyan-200 !text-black" onClick={() => handleClick(chaletName)}>
                 Arrange Booking
               </Button>
                 

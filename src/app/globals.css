@@ -34,7 +34,7 @@
 }
 
 body {
-  background: var(--background);
+  background: white;
   color: black; /* Ensures text is black in light mode */
   font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }

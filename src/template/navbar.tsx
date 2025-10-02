@@ -92,7 +92,22 @@ export default function Navbar() {
           ) : 
           (<p></p>)
           }
-          <div className="relative group">
+          {isLoggedIn ? (
+          <div className="group relative">
+            <IconButton
+              color="inherit"
+              aria-label="logout"
+              onClick={handleLogout}
+              sx={{ ":hover": { bgcolor: "gray" }}}
+            >
+              <LogoutIcon />
+            </IconButton>
+            <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+              Logout
+            </span>
+          </div>
+        ) : (
+          <div className="group relative">
             <IconButton
               color="inherit"
               aria-label="register"
@@ -105,27 +120,38 @@ export default function Navbar() {
               Register now!
             </span>
           </div>
+        )}
         </div>
 
         <div className="mr-4 md:hidden flex justify-between">
           {isLoggedIn ? (
-            <IconButton
-            color="inherit"
-            aria-label="logout"
-            onClick={handleLogout}
-            sx={{ ":hover": { bgcolor: "gray" }}}
-          >
-            <LogoutIcon />
-          </IconButton>
+            <div className="group relative">
+              <IconButton
+                color="inherit"
+                aria-label="logout"
+                onClick={handleLogout}
+                sx={{ ":hover": { bgcolor: "gray" }}}
+              >
+                <LogoutIcon />
+              </IconButton>
+              <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                Logout
+              </span>
+            </div>
           ) : (
-            <IconButton
-            color="inherit"
-            aria-label="register"
-            href="/register"
-            sx={{ ":hover": { bgcolor: "gray" }}}
-          >
-            <PersonAddIcon />
-          </IconButton>
+            <div className="group relative">
+              <IconButton
+                color="inherit"
+                aria-label="register"
+                href="/register"
+                sx={{ ":hover": { bgcolor: "gray" }}}
+              >
+                <PersonAddIcon />
+              </IconButton>
+              <span className="z-999 absolute top-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                Register now!
+              </span>
+            </div>
           )}
 
 

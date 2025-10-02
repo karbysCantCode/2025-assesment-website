@@ -6,6 +6,7 @@ import ChaletStatCard from "@/template/chaletstatcard";
 import { ChaletName, chaletData, siteConfig, clubBenefits } from "@/app/config";
 import Image from "next/image";
 import ScrollButton from "@/template/scrollButton";
+import Button from "@mui/material/Button";
 
 export default function Bookings() {
   return (
@@ -37,22 +38,32 @@ export default function Bookings() {
 
       <div className="flex flex-col divide-y-2 divide-slate-200 text-center bg-white shadow-2xl relative md:w-[90%] w-full mx-auto z-10">
         <h2 className="text-3xl py-4 px-2 font-semibold">
-          How to join the club
+          <i>"How do I join the club?"</i>
         </h2>
-        <p className="py-5">
-          Email maungaclub@maungaclub.maungaclub the following information:
-        </p>
-        <ul className="text-left p-5 list-disc pl-10">
-          <li> Full Name. </li>
-          <li> Physical Address. </li>
-          <li> Proof of Address (eg copy of power bill). </li>
-          <li> Proof of ID (driver's license or passport). </li>
-        </ul>
-        <p className="py-5 text-left px-5">
-          Membership will be confirmed by email. <br></br>
-          Additional information about the Club and accommodation (membership letter) will be sent
-          by regular mail.
-        </p>
+        <div className="py-5">
+          <Button variant="contained" href="/register" className=" !h-20 !m-auto !w-fit !content-center !rounded-xl !bg-cyan-200 !text-black">
+            Register With<br/>Maunga Club Now!
+          </Button>
+        </div>
+        <h2 className="text-3xl py-4 px-2 font-semibold">
+          OR
+        </h2>
+        <div>
+          <p className="py-5 text-xl">
+            Email maungaclub@maungaclub.maungaclub the following information:
+          </p>
+          <ul className="text-left p-5 list-disc pl-10">
+            <li> Full Name. </li>
+            <li> Physical Address. </li>
+            <li> Proof of Address (eg copy of power bill). </li>
+            <li> Proof of ID (driver's license or passport). </li>
+          </ul>
+          <p className="py-5 text-left px-5">
+            Membership will be confirmed by email. <br></br>
+            Additional information about the Club and accommodation (membership letter) will be sent
+            by regular mail.
+          </p>
+        </div>
       </div>
       <ScrollButton/>
       <Footer/>

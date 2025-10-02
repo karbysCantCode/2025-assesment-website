@@ -7,6 +7,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
+import cookies from "js-cookie";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -21,6 +22,75 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 export default function Register() {
+  const [firstNameError, setFirstNameError] = React.useState(false);
+  const [lastNameError, setLastNameError] = React.useState(false);
+  const [addressError, setAddressError] = React.useState(false);
+  const [proofAddressError, setProofAddressError] = React.useState(false);
+  const [proofIDError, setProofIDError] = React.useState(false);
+
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [address, setAddress] = React.useState("");
+
+  const [proofAddress, setProofAddress] = React.useState<File | null>(null);
+  const [proofID, setProofID] = React.useState<File | null>(null);
+  const [addressFileName, setAddressFileName] = React.useState<String | null>(null);
+  const [idFileName, setIdFileName] = React.useState<String | null>(null);
+
+  function handleAddressProofUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      setProofAddress(file);
+      setAddressFileName(file.name);
+    }
+    
+  }
+
+  function handleIDProofUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      setProofID(file);
+      setIdFileName(file.name);
+    }
+  }
+
+  function handleSubmit() {
+    setFirstNameError(false);
+    setLastNameError(false);
+    setAddressError(false);
+    setProofAddressError(false);
+    setProofIDError(false);
+
+    let validSubmission = true;
+    if (firstName.trim() === "") {
+      validSubmission = false;
+      setFirstNameError(true);
+    }
+    if (lastName.trim() === "") {
+      validSubmission = false;
+      setLastNameError(true);
+    }
+    if (address.trim() === "") {
+      validSubmission = false;
+      setAddressError(true);
+    }
+    if (!proofAddress) {
+      validSubmission = false;
+      setProofAddressError(true);
+    }
+    if (!proofID) {
+      validSubmission = false;
+      setProofIDError(true);
+    }
+
+    if (validSubmission) {
+      cookies.set("logged_in", "true");
+      cookies.set("username", firstName + " " + lastName);
+      window.location.href = "/";
+    }
+  }
+
+
   return (
     <main className="bg-slate-200 relative z-1 min-h-screen">
       <Navbar />
@@ -40,17 +110,20 @@ export default function Register() {
             <section className="flex md:flex-row gap-5 justify-around px-5 pt-5 flex-col">
             <div className="flex flex-col">
               <p className="text-xl pl-2 ">First Name</p>
-              <OutlinedInput placeholder="Micheal" className="h-10 !rounded-full"/>
+              <OutlinedInput placeholder="Micheal" className="h-10 !rounded-full" onChange={(event) => setFirstName(event.target.value)}/>
+              {firstNameError && <p className="text-red-500 text-sm pl-2">First name is required</p>}
             </div>
             <div className="flex flex-col">
               <p className="text-xl pl-2 ">Last Name</p>
-              <OutlinedInput placeholder="Hardley" className="h-10 !rounded-full"/>
+              <OutlinedInput placeholder="Hardley" className="h-10 !rounded-full" onChange={(event) => setLastName(event.target.value)}/>
+              {lastNameError && <p className="text-red-500 text-sm pl-2">Last name is required</p>}
             </div>
           </section>
 
           <div className="flex flex-col px-9">
             <p className="text-xl pl-2 ">Enter Physical Address</p>
-            <OutlinedInput placeholder="Eg: 123 Apple Street" className="h-10 !rounded-full"/>
+            <OutlinedInput placeholder="Eg: 123 Apple Street" className="h-10 !rounded-full" onChange={(event) => setAddress(event.target.value)}/>
+            {addressError && <p className="text-red-500 text-sm pl-2">Address is required</p>}
           </div>
           <div className="flex flex-col px-9">
             <p className="text-xl pl-2">Upload Proof of Physical Address</p>
@@ -60,14 +133,15 @@ export default function Register() {
               startIcon={<CloudUploadIcon/>}
               className="h-10 !rounded-full !bg-stone-300 !text-black"
             >
-              Upload Image
+              {addressFileName ? `Uploaded: ${addressFileName}` : "Upload Image"}
               <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => console.log(event.target.files)}
+                onChange={(event) => handleAddressProofUpload(event)}
                 multiple
                 accept="image/*"
               />
             </Button>
+            {proofAddressError && <p className="text-red-500 text-sm pl-2">Proof of address is required</p>}
           </div>
           <div className="flex flex-col px-9">
             <p className="text-xl pl-2 ">Upload Proof of ID</p>
@@ -77,14 +151,15 @@ export default function Register() {
               startIcon={<CloudUploadIcon/>}
               className="h-10 !rounded-full !bg-stone-300 !text-black"
             >
-              Upload Image
+              {idFileName ? `Uploaded: ${idFileName}` : "Upload Image"}
               <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => console.log(event.target.files)}
+                onChange={(event) => handleIDProofUpload(event)}
                 multiple
                 accept="image/*"
               />
             </Button>
+            {proofIDError && <p className="text-red-500 text-sm pl-2">Proof of ID is required</p>}
           </div>
         </section>
 
@@ -92,6 +167,7 @@ export default function Register() {
               component="label"
               variant="contained"
               className="h-15 !rounded-full !bg-stone-300 !text-black !mx-29 !mt-10"
+              onClick={handleSubmit}
             >
               Submit
             </Button>
