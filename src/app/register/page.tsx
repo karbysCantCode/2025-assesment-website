@@ -166,7 +166,7 @@ export default function Register() {
         <Button 
               component="label"
               variant="contained"
-              className="h-15 !rounded-full !bg-stone-300 !text-black !mx-29 !mt-10"
+              className="h-15 !rounded-full !bg-stone-300 md:!w-auto !w-full !text-black md:!mx-29 !mt-10"
               onClick={handleSubmit}
             >
               Submit
