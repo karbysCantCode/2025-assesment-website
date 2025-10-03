@@ -17,7 +17,7 @@ export default function Navbar() {
   const open = Boolean(anchorEl);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [username, setUsername] = React.useState<String | null>(null);
+  const [username, setUsername] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     setIsLoggedIn(Cookies.get("logged_in") === "true");
@@ -27,7 +27,7 @@ export default function Navbar() {
         setUsername(usernameCookie);
       }
     }
-  })
+  }, [isLoggedIn]);
   
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

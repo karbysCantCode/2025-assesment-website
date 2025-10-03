@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 
 export default function ScrollButton() {
   const [visible, setVisible] = useState(true);
-    const handleScroll = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleScroll = () => {
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: "smooth",

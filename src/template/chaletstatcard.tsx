@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 
 type ChaletStatCardProps = {
   chaletName: ChaletName;
-  inverted: Boolean;
+  inverted: boolean;
   handleClick: (chaletName: ChaletName) => void;
 };
 export default function ChaletStatCard({ chaletName, inverted, handleClick }: ChaletStatCardProps) {

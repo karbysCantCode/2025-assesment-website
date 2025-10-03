@@ -34,8 +34,8 @@ export default function Register() {
 
   const [proofAddress, setProofAddress] = React.useState<File | null>(null);
   const [proofID, setProofID] = React.useState<File | null>(null);
-  const [addressFileName, setAddressFileName] = React.useState<String | null>(null);
-  const [idFileName, setIdFileName] = React.useState<String | null>(null);
+  const [addressFileName, setAddressFileName] = React.useState<string | null>(null);
+  const [idFileName, setIdFileName] = React.useState<string | null>(null);
 
   function handleAddressProofUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];

@@ -3,7 +3,7 @@ import * as React from "react";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
 import ChaletStatCard from "@/template/chaletstatcard";
-import { ChaletName, chaletData, siteConfig } from "@/app/config";
+import { ChaletName, chaletData } from "@/app/config";
 import Image from "next/image";
 import cookies from "js-cookie";
 import { IconButton } from "@mui/material";
@@ -15,7 +15,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from "dayjs";
 import {Button} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { closeSync } from "fs";
 
 const isInvalidDate = (date: Dayjs) => {
   const day = date.day();
@@ -61,8 +60,6 @@ export default function Bookings() {
     setInvalidDateRange(false);
 
     let validSubmission = true;
-    let localStartDate = startDate?.add(1, "day");
-    let localEndDate = endDate?.add(1, "day");
 
     if (!selectedChalet) {
       setIsBooking(false);

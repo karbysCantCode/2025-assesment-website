@@ -1,7 +1,6 @@
 import React from "react"; 
 import Image from "next/image";
 import { Button } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
 
 import { chaletData, ChaletName } from "@/app/config";
 type ChaletStatCardProps = {
