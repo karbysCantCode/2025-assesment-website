@@ -97,8 +97,8 @@ export default function Bookings() {
       setInvalidDateRange(true);
       validSubmission = false;
     }
-
-    if ((startDate!.diff(endDate, "day") + 1) > (7 - ((startDate!.day() - 1)%7))) {
+    
+    if ((endDate!.diff(startDate, "days") + 1) > (7 - ((startDate!.day() - 1)%7))) {
       setInvalidDateRange(true);
       validSubmission = false;
     }
