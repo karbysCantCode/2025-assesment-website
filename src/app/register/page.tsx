@@ -1,4 +1,5 @@
 "use client";
+// neccessary imports
 import * as React from "react";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
@@ -9,6 +10,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import cookies from "js-cookie";
 
+// style specifications for the visually hidden input that makes the file uploads possible, from the MUI docs.
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -22,12 +24,14 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 export default function Register() {
+  //input validation states
   const [firstNameError, setFirstNameError] = React.useState(false);
   const [lastNameError, setLastNameError] = React.useState(false);
   const [addressError, setAddressError] = React.useState(false);
   const [proofAddressError, setProofAddressError] = React.useState(false);
   const [proofIDError, setProofIDError] = React.useState(false);
 
+  //user input states
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [address, setAddress] = React.useState("");
@@ -37,6 +41,7 @@ export default function Register() {
   const [addressFileName, setAddressFileName] = React.useState<string | null>(null);
   const [idFileName, setIdFileName] = React.useState<string | null>(null);
 
+  //stores uploaded files if they are valid
   function handleAddressProofUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (file) {
@@ -54,6 +59,7 @@ export default function Register() {
     }
   }
 
+  //validates all the inputs for a registration
   function handleSubmit() {
     setFirstNameError(false);
     setLastNameError(false);
@@ -83,6 +89,7 @@ export default function Register() {
       setProofIDError(true);
     }
 
+    //keeps the user logged in
     if (validSubmission) {
       cookies.set("logged_in", "true");
       cookies.set("username", firstName + " " + lastName);
@@ -95,17 +102,15 @@ export default function Register() {
     <main className="bg-slate-200 relative z-1 min-h-screen">
       <Navbar />
       <div className="fixed top-14 w-full h-screen -z-10 overflow-hidden">
-        <Image
-          alt="View from Kakapo cabin."
-          src="/kakapo/cabin_view.jpg"
-          fill
-          className="object-cover blur-[2px]"
-        />
+        {/*background image*/}
+        <Image alt="View from Kakapo cabin." src="/kakapo/cabin_view.jpg" fill className="object-cover blur-[2px]"/>
       </div>
-
+      {/*regristation menu*/}
       <section className="flex flex-col bg-slate-200 rounded-md mt-50 mb-67 shadow-xl p-5 pb-10 md:mx-auto mx-10 md:w-150 w-auto">
         <h1 className="font-semibold text-2xl">Create Your Account</h1>
         <p className="text-slate-500 px-5">Fill in the information below to become a Maunga Club member today!</p>
+        
+        {/*names inputs*/}
         <section className="flex flex-col gap-5">
             <section className="flex md:flex-row gap-5 justify-around px-5 pt-5 flex-col">
             <div className="flex flex-col">
@@ -120,11 +125,14 @@ export default function Register() {
             </div>
           </section>
 
+          {/*address input*/}
           <div className="flex flex-col px-9">
             <p className="text-xl pl-2 ">Enter Physical Address</p>
             <OutlinedInput placeholder="Eg: 123 Apple Street" className="h-10 !rounded-full" onChange={(event) => setAddress(event.target.value)}/>
             {addressError && <p className="text-red-500 text-sm pl-2">Address is required</p>}
           </div>
+
+          {/*photo proof inputs*/}
           <div className="flex flex-col px-9">
             <p className="text-xl pl-2">Upload Proof of Physical Address</p>
             <Button 

@@ -1,4 +1,5 @@
 "use client";
+// neccessary imports
 import * as React from "react";
 import Navbar from "@/template/navbar";
 import Footer from "@/template/footer";
@@ -16,24 +17,31 @@ import { Dayjs } from "dayjs";
 import {Button} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
+// returns 1 if day isnt fri, sat, or sun or before the current date
 const isInvalidDate = (date: Dayjs) => {
   const day = date.day();
   return !(day === 0 || day === 5 || day === 6) || date.isBefore(new Date());
 }
 export default function Bookings() {
+  //user state
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  //booking menu states
   const [isBooking, setIsBooking] = React.useState(false);
   const [selectedChalet, setSelectedChalet] = React.useState<ChaletName | null>(null);
 
+  //booking menu specific states
   const [childCount , setChildCount] = React.useState(0);
   const [adultCount , setAdultCount] = React.useState(0);
   const [startDate, setStartDate] = React.useState<Dayjs | null>(null);
   const [endDate, setEndDate] = React.useState<Dayjs | null>(null);
 
+  //validation flags
   const [invalidChildCount, setInvalidChildCount] = React.useState(false);
   const [invalidAdultCount, setInvalidAdultCount] = React.useState(false);
   const [invalidDateRange, setInvalidDateRange] = React.useState(false);
 
+  //success popup state
   const [success, setSuccess] = React.useState(false);
 
   const bookingMenuRef = React.useRef<HTMLDivElement>(null);
@@ -42,6 +50,7 @@ export default function Bookings() {
     setIsLoggedIn(true);
   }
 
+  //opens booking menu for the specific chalet 
   function handleBooking(chaletName: ChaletName) {
     const chalet = chaletData[chaletName];
     if (!chalet) return;
@@ -49,11 +58,13 @@ export default function Bookings() {
     setIsBooking(true);
   }
 
+  //closes booking menu
   function closeBooking() {
     setIsBooking(false);
     setSelectedChalet(null);
   }
 
+  //validates inputs of the current booking to alert the user if they need to fix anything
   function validateBooking() {
     setInvalidChildCount(false);
     setInvalidAdultCount(false);
@@ -98,6 +109,7 @@ export default function Bookings() {
       validSubmission = false;
     }
     
+    //checks that bookings are in the same week (ie not friday to friday the next week)
     if ((endDate!.diff(startDate, "days") + 1) > (7 - ((startDate!.day() - 1)%7))) {
       setInvalidDateRange(true);
       validSubmission = false;
@@ -112,6 +124,7 @@ export default function Bookings() {
     return validSubmission;
   }
 
+  //function for the close button on the success menu
   function closeSuccess() {
     setSuccess(false);
     setSelectedChalet(null);
@@ -120,8 +133,9 @@ export default function Bookings() {
   return (
     <main className="bg-slate-200 relative z-1">
       <Navbar/>
+      {/*background image*/}
       <Image alt={"View from Kakapo cabin."} src={"/kakapo/cabin_view.jpg"} fill className="object-cover relative -z-2 md:blur-[0px] blur-[3px]"/>
-
+      {/*header banner*/}
       <div className="flex flex-col content-center bg-white text-center w-full relative top-14 py-10 shadow-xl mb-20">
         <h2 className="text-xl">
           Lets find <i>your</i> perfect
@@ -130,14 +144,17 @@ export default function Bookings() {
           <i>CHALET</i>
         </h1>
       </div>
-
+      {/*displays the chalet specifications for each chalet on opposing sides of the page*/}
       {(Object.keys(chaletData) as ChaletName[]).map((chaletName, index) => (
         <ChaletStatCard key={chaletData[chaletName].name} inverted={(index%2===1)} chaletName={chaletName} handleClick={handleBooking}/>
       ))}
+      {/*booking menu*/}
       { selectedChalet && (
         <div className="fixed inset-0 bg-transparent z-60 flex items-center justify-center">
+          {/*background blur*/}
           <div className="absolute inset-0 bg-opacity-20 backdrop-blur-sm"></div>
 
+          {/*booking or register reference menu*/}
           {isBooking && (<div ref={bookingMenuRef} className="absolute overflow-y-auto bg-white rounded-md shadow-2xl md:top-1/2 top-20 left-1/2 -translate-x-1/2 md:-translate-y-1/2 md:w-120 w-full md:h-auto h-200 md:pb-5 pb-60  z-60 p-5 pt-0">
             <IconButton className="absolute top-2 left-[90%]" onClick={closeBooking} style={{ transform: 'none' }} >
               <CloseIcon />
@@ -145,6 +162,7 @@ export default function Bookings() {
             <div className="h-5"></div>
             {isLoggedIn ? (
               <div className="flex flex-col content-center justify-center">
+                {/*booking menu for specifying the booking*/}
                 <h2 className="text-center text-xl"><i>You are booking</i></h2>
                 <h1 className="text-center text-4xl font-bold">{chaletData[selectedChalet].name}</h1>
                 <div className="flex md:flex-row flex-col justify-around">
@@ -201,6 +219,7 @@ export default function Bookings() {
 
             ) : (
               <div className="flex flex-col content-center justify-center">
+                {/*register reference menu if the user isnt logged in*/}
                 <p className="text-center text-xl mx-auto">Join the club to arrange a booking!</p>
                 <a href="/register" className="text-cyan-400 text-center pt-5">Register here</a>
               </div>
@@ -210,6 +229,7 @@ export default function Bookings() {
 
           {success && (
             <div className="fixed bg-white rounded-md shadow-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-120 w-full h-auto z-60 p-5 pt-0">
+              {/*booking success alert*/}
               <IconButton className="absolute top-2 left-[90%]" onClick={closeSuccess} style={{ transform: 'none' }} >
                 <CloseIcon />
               </IconButton>

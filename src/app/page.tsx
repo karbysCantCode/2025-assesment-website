@@ -1,4 +1,5 @@
 "use client";
+//neccessary imports
 import * as React from "react";
 import Image from "next/image";
 import Navbar from "@/template/navbar";
@@ -7,7 +8,7 @@ import ChaletShowcaseCard from "@/template/chaletshowcasecard";
 import { ChaletName, chaletData } from "@/app/config";
 
 export default function Home() {
-
+  // handles the blur for the very top image as the user scrolls the page
   const [blur, setBlur] = React.useState(0);
   React.useEffect(() => {
     const handleScroll = () => {
@@ -25,8 +26,10 @@ export default function Home() {
   return (
     <div className="bg-transparent">
       <Navbar />
+      {/*header image, is blurred as user scrolls*/}
       <Image src={"/mountain_view_1.jpg"} fill alt="View of Maunga Club mountains" className="md:!h-100 !h-50 !w-full !object-cover !object-center !fixed !top-14 !z-10" style={{filter:`blur(${blur}px)`}}/>
       <main className="relative md:top-114 top-64 z-50">
+        {/*heading banner*/}
         <section className="relative bg-white w-full h-auto">
           <h1 className="text-center pt-5 text-[1.5rem] text-black block">
             Welcome to
@@ -35,6 +38,7 @@ export default function Home() {
             Maunga Club
           </h1>
         </section>
+        {/*maunga club blurb section*/}
         <section>
           <Image fill src={"/mountain_view_dark.jpg"} alt="View of forest at Maunga Club" className="!relative !h-200 !w-full !object-cover !object-center"/>
           <aside className="flex flex-col divide-y-2 divide-stone-200 absolute top-40 md:left-10 left-5 mr-5 md:w-100 h-auto w-[90%] bg-white p-5 rounded-md shadow-md max-w-md">
@@ -52,7 +56,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-center">Our Chalets</h2>
           </div>
       
-          
+        {/*photo collages of each chalet*/}
         </section>
         <article className="flex md:flex-row flex-wrap flex-col justify-around">
           {(Object.keys(chaletData) as ChaletName[]).map((chaletName) => (

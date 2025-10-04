@@ -8,6 +8,7 @@ const Footer = () => {
           Contact Us: maungaclub@maungaclub.maungaclub
         </p>
         <p className="text-sm">
+          {/*auto updating copyright label*/}
           &copy; {new Date().getFullYear()} Maunga Club. All rights reserved.
         </p>
       </div>

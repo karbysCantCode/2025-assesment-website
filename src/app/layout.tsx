@@ -1,3 +1,4 @@
+// specifying the layout and metadata of the whole site in this file.
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

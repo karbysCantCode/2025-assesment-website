@@ -1,5 +1,6 @@
 
-
+// this file contains much of the data that templates use to construct repetitive elements.
+// new information can easily be added here and the use of templates allows for the site to automatically update to include that information without any needed changes to the site
 export const siteConfig = {
     siteName: "Maunga Club",
     navbarElements: [

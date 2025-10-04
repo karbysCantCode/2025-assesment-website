@@ -1,3 +1,4 @@
+//neccessary imports
 import React from "react"; 
 import Image from "next/image";
 import { Button } from "@mui/material";
@@ -8,8 +9,11 @@ type ChaletStatCardProps = {
 };
 
 export default function ChaletShowcaseCard({ chaletName }: ChaletStatCardProps) {
+  //checks that the chalet exists in the config.ts file and stores it.
   const chalet = chaletData[chaletName];
   if (!chalet) return null;
+
+  //sends the user to the bookings page when triggered
   const handleClick = () => {
     window.location.assign("/bookings")
   };
@@ -26,6 +30,7 @@ export default function ChaletShowcaseCard({ chaletName }: ChaletStatCardProps) 
         Find out more
       </Button>
       
+      {/*photo collage*/}
       <section className="justify-between relative flex md:flex-row flex-col">
         <Image src={chalet.image} fill alt={chalet.name} className="!shadow-md !rounded-md !object-cover !h-auto !w-auto !max-h-110 md:!max-w-100 !ml-5 !mr-5 md:!ml-auto  md:!mr-auto !m-10 !relative md:!m-10 " />
         <aside className="flex-row content-center mr-10">

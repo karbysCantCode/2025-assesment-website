@@ -1,3 +1,4 @@
+//neccessary imports
 import React from "react"; 
 import Image from "next/image";
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning'; {/*child icon*/ }
@@ -7,20 +8,26 @@ import PersonIcon from '@mui/icons-material/Person'; {/*adult icon*/ }
 import { chaletData, ChaletName } from "@/app/config";
 import { Button } from "@mui/material";
 
+//for information to be passed to this template
 type ChaletStatCardProps = {
   chaletName: ChaletName;
   inverted: boolean;
   handleClick: (chaletName: ChaletName) => void;
 };
 export default function ChaletStatCard({ chaletName, inverted, handleClick }: ChaletStatCardProps) {
+    //checks the chalet exists and stores it
     const chalet = chaletData[chaletName];
     if (!chalet) return null;
+    //inverted image and text layout
     if (inverted) return (
       <main className="flex flex-col bg-white w-fit h-auto p-10 mr-10 md:ml-auto ml-10 rounded-md shadow-md relative z-51">
             <article className="flex md:flex-row flex-col content-center justify-between gap-10">
+                {/*photo of the chalet*/}
                 <Image src={chalet.image} fill alt={chalet.name} className="!rounded-md md:!m-0 !mt-5 !h-auto !max-w-100 !relative md:block hidden"/>
+                
                 <section className="divide-y-2 divide-slate-200">
                   <h2 className="pb-5 mb-5 text-[2rem]">{chalet.name}</h2>
+                  {/*displays the features of the chalet*/}
                   <ul className="pl-5 mt-5 pb-5 list-disc">
                     {chalet.features.map((feature) => (
                       <li className="md:max-w-60" key={feature}>
@@ -31,6 +38,7 @@ export default function ChaletStatCard({ chaletName, inverted, handleClick }: Ch
                   </ul>
                   {/* wide screen stats and book buttons */}
                   <div className="md:flex hidden flex-row content-center justify-around pt-5 pb-5">
+                    {/*max occupant count specifications*/}
                     <div className="w-24 flex flex-row relative content-center group bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
                         <a className="pr-2" >{chalet.adults}</a>
                         <PersonIcon />
@@ -81,12 +89,14 @@ export default function ChaletStatCard({ chaletName, inverted, handleClick }: Ch
         </main>
     )
     else
+    //normal text and image layout
     return (
         <main className="flex flex-col bg-white w-fit h-auto p-10 m-10 rounded-md shadow-md relative z-51">
             <article className="flex md:flex-row flex-col content-center justify-between gap-10">
                 <section className="divide-y-2 divide-slate-200">
                   <h2 className="pb-5 mb-5 text-[2rem]">{chalet.name}</h2>
                   <ul className="pl-5 mt-5 pb-5 list-disc">
+                    {/*displays the features of the chalet*/}
                     {chalet.features.map((feature) => (
                       <li className="md:max-w-60" key={feature}>
                         <a>{feature}</a>
@@ -96,6 +106,7 @@ export default function ChaletStatCard({ chaletName, inverted, handleClick }: Ch
                   </ul>
                   {/* wide screen stats and book buttons */}
                   <div className="md:flex hidden flex-row content-center justify-around pt-5 pb-5">
+                    {/*max occupant count specifications*/}
                     <div className="w-24 flex flex-row relative content-center group bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
                         <a className="pr-2" >{chalet.adults}</a>
                         <PersonIcon />
@@ -115,12 +126,13 @@ export default function ChaletStatCard({ chaletName, inverted, handleClick }: Ch
                     Arrange Booking
                   </Button>
                 </section>
-                
+                {/*photo of the chalet*/}
                 <Image src={chalet.image} fill alt={chalet.name} className="!rounded-md md:!m-0 !mt-5 !h-auto !max-w-100 !relative"/>
             </article>
 
             {/* slim screen stats and book buttons */}
             <div className="md:hidden flex md:flex-row flex-col content-center justify-start pt-5">
+              {/*max occupant count specifications*/}
               <div className="flex flex-row content-center md:justify-start justify-start">
                 <div className="w-24 flex flex-row content-center relative group bg-white justify-between p-5 mr-5 shadow-md rounded-full hover:bg-slate-200">
                     <a className="pr-2" >{chalet.adults}</a>

@@ -13,9 +13,11 @@ import Cookies from "js-cookie";
 import { siteConfig } from "@/app/config";
 
 export default function Navbar() {
+  // mobile menu states
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  //user states
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [username, setUsername] = React.useState<string | null>(null);
 
@@ -29,6 +31,7 @@ export default function Navbar() {
     }
   }, [isLoggedIn]);
   
+  //mobile menu helpers from the MUI docs.
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,6 +39,7 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  //clears login cookies for the user if triggered.
   const handleLogout = () => {
     setIsLoggedIn(false);
     const loggedInCookie = Cookies.get("logged_in");
@@ -48,6 +52,7 @@ export default function Navbar() {
     <nav className="w-full h-14 bg-mantle text-white flex top-0 left-0 fixed z-999">
       <div className="container flex justify-between items-center min-w-full">
         <div className="flex items-center justify-between w-140 divide-x-3 divide-white">
+          {/*maunga club logo*/}
           <Image
           src={"/Maunga_Club_white.png"}
           alt="Maunga Club Logo"
@@ -59,6 +64,7 @@ export default function Navbar() {
 
         {/* desktop page nav */}
         <ul className="hidden md:flex flex-row divide-x-2 divide-base w-full">
+          {/*displays buttons for each page listed in the site config*/}
           {siteConfig.navbarElements.map((element) => (
             <li key={element.name}>
               <Button
@@ -83,7 +89,8 @@ export default function Navbar() {
           ))}
         </ul>
         </div>
-
+        
+        {/*login/logout button, and a greeting to the users full name if they are logged in*/}
         <div className="md:flex hidden items-center pe-7">
           {isLoggedIn ? (
             <p>
@@ -162,8 +169,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-
+      
+      {/*menu for mobile navigation of the websites pages*/}
       <Menu 
         anchorEl={anchorEl} 
         open={open} 
